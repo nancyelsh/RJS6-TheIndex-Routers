@@ -35,7 +35,7 @@ class App extends Component {
     }
   }
 
-  getView = () => {
+  getContentView = () => {
     if (this.state.loading) {
       return <Loading />;
     } else {
@@ -61,7 +61,7 @@ class App extends Component {
           <div className="col-2">
             <Sidebar />
           </div>
-          <div className="content col-10">{this.getView()}</div>
+          <div className="content col-10">{this.getContentView()}</div>
         </div>
       </div>
     );
