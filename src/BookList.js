@@ -13,6 +13,7 @@ const instance = axios.create({
 class BookList extends Component {
   state = {
     filteredBooks: this.props.books,
+    filterBooksByColor: this.props.books,
     book: null
   };
 
@@ -38,11 +39,6 @@ class BookList extends Component {
   };
 
   render() {
-    // const authorCards = this.state.filteredAuthors.map(author => (
-    //   <AuthorCard key={author.id} author={author} />
-    // ));
-    // const book = this.state.book;
-    // const bookName = book.title;
     return (
       <div className="book">
         <div>
