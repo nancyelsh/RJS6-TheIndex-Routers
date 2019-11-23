@@ -1,19 +1,12 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 // Components
-import AuthorCard from "./AuthorCard";
 import SearchBar from "./SearchBar";
 import BookTable from "./BookTable";
 
-const instance = axios.create({
-  baseURL: "https://the-index-api.herokuapp.com"
-});
-
 class BookList extends Component {
   state = {
-    filteredBooks: this.props.books,
-    book: null
+    filteredBooks: this.props.books
   };
 
   filterBooks = query => {
@@ -24,32 +17,23 @@ class BookList extends Component {
     this.setState({ filteredBooks: filteredBooks });
   };
 
-  getColor = async () => {
-    const colorID = this.props.match.params.colorID;
-    try {
-      const res = await instance.get(`/api/books/${colorID}`);
-      const book = res.data;
-      this.setState({
-        book: book
-      });
-    } catch (err) {
-      console.error(err);
-    }
+  filterByColor = color => {
+    return this.state.filteredBooks.filter(book => book.color === color);
   };
 
   render() {
-    // const authorCards = this.state.filteredAuthors.map(author => (
-    //   <AuthorCard key={author.id} author={author} />
-    // ));
-    // const book = this.state.book;
-    // const bookName = book.title;
+    const bookColor = this.props.match.params.bookColor;
+    let books = this.state.filteredBooks;
+
+    if (bookColor) {
+      books = this.filterByColor(bookColor);
+    }
+
     return (
       <div className="book">
-        <div>
-          <h3>Books</h3>
-          <SearchBar onChange={this.filterBooks} />
-        </div>
-        <BookTable books={this.state.filteredBooks} />
+        <h3>Books</h3>
+        <SearchBar onChange={this.filterBooks} />
+        <BookTable books={books} />
       </div>
     );
   }
