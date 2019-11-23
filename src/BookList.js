@@ -6,7 +6,13 @@ import BookTable from "./BookTable";
 
 class BookList extends Component {
   state = {
+<<<<<<< HEAD
     filteredBooks: this.props.books
+=======
+    filteredBooks: this.props.books,
+    filterBooksByColor: this.props.books,
+    book: null
+>>>>>>> 1eb696ba010528861951938a8caff4d91e6ceca4
   };
 
   filterBooks = query => {
@@ -22,6 +28,7 @@ class BookList extends Component {
   };
 
   render() {
+<<<<<<< HEAD
     const bookColor = this.props.match.params.bookColor;
     let books = this.state.filteredBooks;
 
@@ -29,6 +36,8 @@ class BookList extends Component {
       books = this.filterByColor(bookColor);
     }
 
+=======
+>>>>>>> 1eb696ba010528861951938a8caff4d91e6ceca4
     return (
       <div className="book">
         <h3>Books</h3>
